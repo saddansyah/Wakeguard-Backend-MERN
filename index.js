@@ -1,14 +1,15 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const path = require('path');
 const cors = require('cors');
 
-// const connectDB = require('./server/database/connection');
-// const taskRouter = require('./server/routes/taskRouter');
-// const userRouter = require('./server/routes/userRouter');
-// const notesRouter = require('./server/routes/notesRouter');
-// const errorHandler = require('./server/middleware/errorHandler');
+const connectDB = require('./src/database/connection');
+
+const contactsRoute = require('./src/routes/contactsRoute');
+// const userRouter = require('./src/routes/userRouter');
+// const notesRouter = require('./src/routes/notesRouter');
+
+const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
 
@@ -16,23 +17,25 @@ const app = express();
 dotenv.config({ path: "config.env" })
 const PORT = process.env.PORT || 8000
 
-//tag req
+//logger 
 app.use(morgan('dev'));
 
 //mongoDB connection
-// connectDB();
+connectDB();
 
 // express third party middlewares
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Use route
+app.use('/api/contacts', contactsRoute);
 // app.use('/api/tasks', taskRouter);
 // app.use('/api/user', userRouter);
 // app.use('/api/notes', notesRouter);
 
 // middleware error handler
-// app.use(errorHandler);
+app.use(errorHandler);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "Hello Wakeguard" })
