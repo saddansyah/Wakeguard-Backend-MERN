@@ -5,14 +5,32 @@ const successResponseBuilder = (data) => {
     };
 };
 
-const errorResponseBuilder = (error, statusCode) => {
+const errorResponseBuilder = (error) => {
     return {
         success: false,
-        error: error.message,
+        error: error.message || 'An error occured',
     };
 };
 
+const httpNotFound = (message = 'Request Not Found') => {
+    return {
+        success: false,
+        statusCode: 404,
+        message: message
+    }
+}
+
+const httpBadRequest = (message = 'Bad Request') => {
+    return {
+        success: false,
+        statusCode: 400,
+        message: message
+    }
+}
+
 module.exports = {
     successResponseBuilder,
-    errorResponseBuilder
+    errorResponseBuilder,
+    httpNotFound,
+    httpBadRequest
 }

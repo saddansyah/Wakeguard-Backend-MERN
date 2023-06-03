@@ -1,13 +1,10 @@
-const errorHandler = (err, req, res, next) => {
-    console.log(err)
+const { errorResponseBuilder } = require('../helpers/responseBuilder');
 
+const errorHandler = (err, req, res, next) => {
     const statusCode = err.statusCode || 500;
 
-    res.status(statusCode).json({
-        success: false,
-        statusCode,
-        error: err.message
-    });
+    res.status(statusCode).json(errorResponseBuilder(err));
+    
     return;
 };
 
