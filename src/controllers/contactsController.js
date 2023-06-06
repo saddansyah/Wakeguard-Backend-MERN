@@ -32,17 +32,17 @@ exports.getContact = async (req, res, next) => {
         }
 
         // const user_id = req.user._id;
-        const contacts = await Contacts
+        const contact = await Contacts
             .find()
             // .find({ user_id })
             .findOne({ _id: id })
             .exec();
 
-        if (!contacts) {
-            throw httpNotFound('Contacts is empty');
+        if (!contact) {
+            throw httpNotFound(`Contacts with ID ${id} is not found`);
         }
 
-        res.status(200).json(successResponseBuilder(contacts));
+        res.status(200).json(successResponseBuilder(contact));
     }
     catch (err) {
         next(err);

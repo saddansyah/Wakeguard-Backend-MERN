@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectDB = require('./src/database/connection');
 
 const contactsRoute = require('./src/routes/contactsRoute');
+const articlesRoute = require('./src/routes/articlesRoute');
 // const userRouter = require('./src/routes/userRouter');
 // const notesRouter = require('./src/routes/notesRouter');
 
@@ -30,6 +31,7 @@ app.use(express.json());
 
 // Use route
 app.use('/api/contacts', contactsRoute);
+app.use('/api/articles', articlesRoute);
 // app.use('/api/tasks', taskRouter);
 // app.use('/api/user', userRouter);
 // app.use('/api/notes', notesRouter);

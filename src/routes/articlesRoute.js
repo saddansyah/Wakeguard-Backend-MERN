@@ -1,17 +1,15 @@
 const express = require('express');
-const controller = require('../controllers/contactsController');
+const controller = require('../controllers/articleController');
 // const requireAuth = require('../middleware/requireAuth')
 
 const route = express.Router();
 
-// route.use(requireAuth);
+route.get('/category', /* Authorization Middleware */ controller.getAllCategories);
+route.post('/category', /* Authorization Middleware */ controller.createCategory);
 
-// Route for contacts controller
-route.get('/', controller.getAllContacts);
-route.get('/:id', controller.getContact);
-route.post('/', controller.createContact);
-route.patch('/:id', controller.updateContact);
-route.delete('/:id', controller.deleteContact);
+route.get('/', controller.getAllArticles);
+route.get('/:id', controller.getArticle);
+route.post('/', /* Authorization Middleware */ controller.createArticle);
 
 // Route error handler
 route.patch('/', (req, res, next) => {
