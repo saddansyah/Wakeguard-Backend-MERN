@@ -80,9 +80,10 @@ exports.updateContact = async (req, res, next) => {
 
         const id = req.params.id;
         const body = req.body;
+        const user_id = req.user.uid;
 
         const contacts = await Contacts
-            .findOneAndUpdate({ _id: id }, { ...body }, { returnDocument: 'after' })
+            .findOneAndUpdate({ user_id: user_id, _id: id }, { ...body }, { returnDocument: 'after' })
             .exec();
 
         if (!contacts) {
