@@ -28,9 +28,18 @@ const httpBadRequest = (message = 'Bad Request') => {
     }
 }
 
+const httpUnauthorized = (message = 'Unauthorized') => {
+    return {
+        success: false,
+        statusCode: 401,
+        message: message
+    }
+}
+
 module.exports = {
     successResponseBuilder,
     errorResponseBuilder,
     httpNotFound,
-    httpBadRequest
+    httpBadRequest,
+    httpUnauthorized
 }

@@ -38,11 +38,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api/contacts', contactsRoute);
 app.use('/api/articles', articlesRoute);
-// app.use('/api/tasks', taskRouter);
-// app.use('/api/user', userRouter);
-// app.use('/api/notes', notesRouter);
+app.use('/api/contacts', contactsRoute);
 
 // middleware error handler
 app.use(errorHandler);

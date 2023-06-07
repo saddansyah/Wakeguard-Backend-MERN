@@ -7,9 +7,9 @@ exports.getAllContacts = async (req, res, next) => {
     try {
         // const user_id = req.user._id;
         const contacts = await Contacts
-            .find()
+            .find({})
             // .find({ user_id })
-            .sort({ isPinned: -1, createdAt: -1 })
+            // .sort({ isPinned: -1, createdAt: -1 })
             .exec();
 
         if (!contacts) {

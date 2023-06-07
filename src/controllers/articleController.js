@@ -8,9 +8,9 @@ exports.getAllArticles = async (req, res, next) => {
     try {
         // const user_id = req.user._id;
         const articles = await Articles
-            .find()
+            .find({})
             // .find({ user_id })
-            .sort({ createdAt: -1 })
+            // .sort({ createdAt: -1 })
             .exec();
 
         if (!articles) {
