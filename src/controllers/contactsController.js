@@ -5,10 +5,10 @@ const { successResponseBuilder, httpNotFound, httpBadRequest } = require('../hel
 exports.getAllContacts = async (req, res, next) => {
 
     try {
-        // const user_id = req.user._id;
+        const user_id = req.user.uid;
         const contacts = await Contacts
             .find({})
-            // .find({ user_id })
+            .find({ user_id })
             // .sort({ isPinned: -1, createdAt: -1 })
             .exec();
 
@@ -31,10 +31,10 @@ exports.getContact = async (req, res, next) => {
             throw httpNotFound('Your ID is invalid');
         }
 
-        // const user_id = req.user._id;
+        const user_id = req.user.uid;
         const contact = await Contacts
             .find()
-            // .find({ user_id })
+            .find({ user_id })
             .findOne({ _id: id })
             .exec();
 
@@ -55,11 +55,11 @@ exports.createContact = async (req, res, next) => {
             throw httpBadRequest('All field in request body must be not empty')
         }
 
-        const body = req.body;
+        const { name, number, isPinned } = req.body;
+        const user_id = req.user.uid;
 
-        // const user_id = req.user._id;
         const contacts = await Contacts
-            .create(body);
+            .create({ name, number, isPinned, user_id });
 
         res.status(200).json(successResponseBuilder(contacts));
     }
