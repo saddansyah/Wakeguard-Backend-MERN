@@ -6,7 +6,7 @@ const requireAuth = require('../middlewares/requireAuth');
 const route = express.Router();
 
 // Middleware firebase admin
-// route.use(requireAuth);
+route.use(requireAuth);
 
 // Route for contacts controller
 route.get('/', controller.getAllContacts);
