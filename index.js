@@ -15,7 +15,7 @@ const errorHandler = require('./src/middlewares/errorHandler');
 const app = express();
 
 // setup port
-dotenv.config({ path: "config.env" })
+dotenv.config({ path: ".env" })
 const PORT = process.env.PORT || 8000
 
 //logger 
