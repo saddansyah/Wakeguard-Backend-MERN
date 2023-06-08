@@ -54,12 +54,11 @@ exports.createContact = async (req, res, next) => {
         if (!req.body) {
             throw httpBadRequest('All field in request body must be not empty')
         }
-
-        const { name, number, isPinned, user_id } = req.body;
-        // const user_id = req.user.uid;
+        const body = req.body;
+        const user_id = req.user.uid;
 
         const contacts = await Contacts
-            .create({ name, number, isPinned, user_id });
+            .create(body);
 
         res.status(200).json(successResponseBuilder(contacts));
     }

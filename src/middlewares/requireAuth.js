@@ -11,7 +11,7 @@ const requireAuth = async (req, res, next) => {
         
         const decodeValue = await auth.verifyIdToken(token);
         if (decodeValue) {
-            console.log(decodeValue)
+            // console.log(decodeValue)
             req.user = decodeValue;
             return next();
         }
