@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 8000
 
 //logger 
 app.use(morgan('dev'));
+app.use(cors());
 
 //mongoDB connection
 connectDB();
@@ -30,7 +31,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Use route
-app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
