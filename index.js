@@ -20,7 +20,12 @@ const PORT = process.env.PORT || 8000
 
 //logger 
 app.use(morgan('dev'));
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  credentials: true,           
+  optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 //mongoDB connection
 connectDB();
